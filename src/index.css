@@ -304,6 +304,12 @@ ul {
   color: var(--grey-500);
 }
 
+.icon {
+  font-size: 3rem;
+  margin-top: 1rem;
+  color: var(--primary-500);
+}
+
 .prev,
 .next {
   position: absolute;
@@ -331,4 +337,20 @@ ul {
 
 .next {
   right: 0;
+}
+
+@media screen and (min-width: 800px) {
+  .text {
+    max-width: 45em;
+  }
+  .prev,
+  .next {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+}
+
+.next-slide {
+  transform: translateX(200%);
 }
