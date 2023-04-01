@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { list, shortList, longList } from '../data.js';
 import { FaQuoteRight } from 'react-icons/fa';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const Carousel = () => {
-  const [people, setPeople] = useState(list);
+  const [people, setPeople] = useState(longList);
   const [currentPerson, setCurrentPerson] = useState(0);
+
+  useEffect(() => {
+    let sliderId = setInterval(nextSlide, 2000);
+    return () => {
+      clearInterval(sliderId);
+    };
+  }, [currentPerson]);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     nextSlide();
+  //   }, 2000);
+  // }, []);
 
   const prevSlide = () => {
     setCurrentPerson((prevPerson) => {
@@ -45,6 +57,8 @@ const Carousel = () => {
             className='slide '
             style={{
               transform: `translateX(${(personIndex - currentPerson) * 100}%)`,
+              opacity: personIndex === currentPerson ? 1 : 0,
+              visibility: personIndex === currentPerson ? 'visible' : 'hidden',
             }}
           >
             <img src={image} alt={name} className='person-img' />
